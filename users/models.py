@@ -37,7 +37,7 @@ class User(AbstractUser):
         blank=True
     )
     avatar = models.ImageField(blank=True)
-    birthdate = models.DateField(blank=True)
+    birthdate = models.DateField(blank=True, null=True)
     language = models.CharField(
         choices=LANGUAGE_CHOICES,
         max_length=3,
