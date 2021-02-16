@@ -30,15 +30,14 @@ class User(AbstractUser):
         (CURRENCY_UAH, 'UAH'),
     ]
 
-    bio = models.TextField(default="", blank=True)
+    bio = models.TextField(blank=True)
     gender = models.CharField(
         max_length=10,
-        null=True,
         choices=GENDER_CHOICES,
         blank=True
     )
-    avatar = models.ImageField(null=True, blank=True)
-    birthdate = models.DateTimeField(null=True)
+    avatar = models.ImageField(blank=True)
+    birthdate = models.DateField(blank=True)
     language = models.CharField(
         choices=LANGUAGE_CHOICES,
         max_length=3,
