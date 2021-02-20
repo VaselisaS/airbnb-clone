@@ -4,7 +4,7 @@ from core import models as core_models
 
 
 class AbstractItem(core_models.TimeStampedModel):
-    """ Absract Item """
+    """ Abstract Item """
 
     name = models.CharField(max_length=140)
 
@@ -29,11 +29,11 @@ class Amenity(AbstractItem):
         verbose_name_plural = "Amenities"
 
 
-class Fasility(AbstractItem):
-    """ Fasility Model Definition """
+class Facility(AbstractItem):
+    """ Facility Model Definition """
 
     class Meta:
-        verbose_name_plural = "Fasilities"
+        verbose_name_plural = "Facilities"
 
 
 class HouseRule(AbstractItem):
@@ -65,12 +65,10 @@ class Room(core_models.TimeStampedModel):
     instant_book = models.BooleanField(default=False)
     host = models.ForeignKey(to="users.User", on_delete=models.CASCADE)
     room_type = models.ForeignKey(
-        "RoomType",
-        on_delete=models.SET_NULL,
-        null=True
+        "RoomType", on_delete=models.SET_NULL, null=True
     )
     amenities = models.ManyToManyField("Amenity", blank=True)
-    fasilities = models.ManyToManyField("Fasility", blank=True)
+    facilities = models.ManyToManyField("Facility", blank=True)
     house_rules = models.ManyToManyField("HouseRule", blank=True)
 
     def __str__(self):
