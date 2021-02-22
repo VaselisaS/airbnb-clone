@@ -79,6 +79,10 @@ class Room(core_models.TimeStampedModel):
         "HouseRule", related_name="rooms", blank=True
     )
 
+    def save(self, *args, **kwargs):
+        self.city = str.capitalize(self.city)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
