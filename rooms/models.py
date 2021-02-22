@@ -91,7 +91,7 @@ class Room(core_models.TimeStampedModel):
         rating = 0
         for review in all_reviews:
             rating += review.rating_average()
-        return rating / len(all_reviews)
+        return rating / (len(all_reviews) or 1)
 
 
 class Photo(core_models.TimeStampedModel):

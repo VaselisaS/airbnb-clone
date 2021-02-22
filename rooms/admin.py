@@ -73,6 +73,7 @@ class RoomAdmin(admin.ModelAdmin):
         "host",
         "count_amenities",
         "total_rating",
+        "count_photos",
     )
 
     list_filter = (
@@ -96,6 +97,11 @@ class RoomAdmin(admin.ModelAdmin):
 
     def count_amenities(self, obj):
         return obj.amenities.count()
+
+    def count_photos(self, obj):
+        return obj.photos.count()
+
+    count_photos.short_description = "Photo Counts"
 
 
 @admin.register(models.Photo)
