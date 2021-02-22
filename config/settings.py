@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "reservations.apps.ReservationsConfig",
     "lists.apps.ListsConfig",
     "conversations.apps.ConversationsConfig",
+    "django_seed",
 ]
 
 MIDDLEWARE = [
