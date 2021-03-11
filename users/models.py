@@ -38,10 +38,16 @@ class User(AbstractUser):
     avatar = models.ImageField(blank=True, upload_to="avatars")
     birthdate = models.DateField(blank=True, null=True)
     language = models.CharField(
-        choices=LANGUAGE_CHOICES, max_length=3, blank=True
+        choices=LANGUAGE_CHOICES,
+        max_length=3,
+        blank=True,
+        default=LANGUAGE_ENGLISH,
     )
 
     currency = models.CharField(
-        choices=CURRENCY_CHOICES, max_length=3, blank=True
+        choices=CURRENCY_CHOICES,
+        max_length=3,
+        blank=True,
+        default=CURRENCY_USD,
     )
     superhost = models.BooleanField(default=False)
