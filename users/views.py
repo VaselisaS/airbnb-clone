@@ -2,7 +2,8 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import authenticate, login, logout
-from . import forms
+from django.contrib.sites.shortcuts import get_current_site
+from . import forms, models
 
 
 class LoginView(FormView):
@@ -36,4 +37,17 @@ class SingUpView(FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
+        domain = get_current_site(self.request).domain
+        user.verify_email(domain)
         return super().form_valid(form)
+
+
+def complete_verification(request, key):
+    try:
+        user = models.User.objects.get(email_secret=key)
+        user.email_verified = True
+        user.email_secret = ""
+        user.save()
+    except models.User.DoesNotExist:
+        pass
+    return redirect(reverse("core:home"))

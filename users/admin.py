@@ -37,4 +37,6 @@ class CustomUserAdmin(UserAdmin):
         "is_active",
         "currency",
         "language",
+        "email_verified",
+        "email_secret",
     )

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -135,3 +136,15 @@ AUTH_USER_MODEL = "users.User"
 MEDIA_ROOT = BASE_DIR / "media"
 
 MEDIA_URL = "/media/"
+
+# Email configuration
+
+EMAIL_HOST = "smtp.gmail.com"
+
+EMAIL_PORT = "587"
+
+EMAIL_HOST_USER = os.environ.get("GMAIL_USER")
+
+EMAIL_HOST_PASSWORD = os.environ.get("GMAIL_PASSWORD")
+
+EMAIL_USE_TLS = True
